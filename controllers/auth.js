@@ -1,3 +1,6 @@
+const secret = process.env.JWT_SECRET;
+console.log('secret = ' + secret);
+
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -54,7 +57,7 @@ exports.login = async (req, res, next) => {
         email: user.email,
         userId: user._id.toString(),
       },
-      'somesupersecretsecret',
+      secret,
       { expiresIn: '1h' }
     );
     res.status(200).json({ token: token, userId: user._id.toString() });
