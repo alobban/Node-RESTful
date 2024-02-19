@@ -1,5 +1,4 @@
 const secret = process.env.JWT_SECRET;
-console.log('secret = ' + secret);
 
 const User = require('../models/user');
 const bcrypt = require('bcryptjs');
