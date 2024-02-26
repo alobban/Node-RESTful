@@ -1,5 +1,7 @@
-const username = process.env.USER;
-const password = process.env.USER_KEY;
+const USERNAME = process.env.USER;
+const PASSWORD = process.env.USER_KEY;
+const DATABASE = process.env.MONGO_DB;
+const PORT = process.env.PORT;
 
 const path = require('path');
 
@@ -64,10 +66,10 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    `mongodb+srv://${username}:${password}@cluster0.9rnjn6v.mongodb.net/messages?retryWrites=true&w=majority`
+    `mongodb+srv://${USERNAME}:${PASSWORD}@cluster0.9rnjn6v.mongodb.net/${DATABASE}?retryWrites=true&w=majority`
   )
   .then((result) => {
-    const server = app.listen(8080);
+    const server = app.listen(PORT || 8080);
     const io = require('./socket').init(server);
     io.on('connection', (socket) => {
       console.log('Client connected');

@@ -1,4 +1,4 @@
-const secret = process.env.JWT_SECRET;
+const SECRET = process.env.JWT_SECRET;
 
 const jwt = require('jsonwebtoken');
 
@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
   const token = authHeader.split(' ')[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, secret);
+    decodedToken = jwt.verify(token, SECRET);
   } catch (err) {
     err.statusCode = 500;
     throw err;
