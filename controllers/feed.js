@@ -57,7 +57,7 @@ exports.createPost = async (req, res, next) => {
     const user = await User.findById(req.userId);
     user.posts.push(post);
     await user.save();
-    io.getIO().emit('post', {
+    io.getIO().emit('posts', {
       action: 'create',
       post: post,
       creator: { _id: user._id, name: user.name },
